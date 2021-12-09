@@ -16,6 +16,6 @@ const statisticsSchema = new mongoose.Schema({
   },
 });
 
-const Statistics = mongoose.model('statistics', statisticsSchema);
+const Statistics = mongoose.model('Statistic', statisticsSchema);
 
 module.exports = Statistics;
