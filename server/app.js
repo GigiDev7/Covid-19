@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const countryStatsRouter = require('./routes/country');
+const summaryRouter = require('./routes/summary');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cookieParser());
 
 //routes
 app.use('/countries-stats', countryStatsRouter);
+app.use('/summary', summaryRouter);
 
 //Connect to DB and run server
 const PORT = process.env.PORT || 5000;
