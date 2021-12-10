@@ -39,7 +39,7 @@ const signUp = async (req, res) => {
     const newUser = await User.create({ email, password });
     const token = createToken(newUser._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-    res.status(201).json(newUser);
+    res.status(201).json({ id: newUser._id, email: newUser.email });
   } catch (error) {
     const err = handleError(error);
     res.status(400).json(err);
@@ -60,7 +60,7 @@ const login = async (req, res) => {
     }
     const token = createToken(user._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
-    res.status(200).json(user);
+    res.status(200).json({ id: user._id, email: user.email });
   } catch (error) {
     res.status(400).json(error);
   }
