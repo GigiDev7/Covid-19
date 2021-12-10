@@ -7,6 +7,7 @@ require('dotenv').config();
 const countryStatsRouter = require('./routes/country');
 const summaryRouter = require('./routes/summary');
 const userRouter = require('./routes/user');
+const protect = require('./middleware/protect');
 
 const app = express();
 
@@ -17,6 +18,10 @@ app.use(cookieParser());
 
 //routes
 app.use(userRouter);
+
+//protect routes from unauthorized users
+app.use(protect);
+
 app.use('/countries-stats', countryStatsRouter);
 app.use('/summary', summaryRouter);
 
