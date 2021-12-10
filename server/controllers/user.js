@@ -1,5 +1,6 @@
 const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // helper for error handling
 const handleError = (err) => {
@@ -23,16 +24,20 @@ const handleError = (err) => {
   }
 };
 
+//helper for creating token
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: 24 * 60 * 60,
+  });
+};
+
 // controllers
 const signUp = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const newUser = await User.create({ email, password });
-    const id = newUser._id;
-    const token = jwt.sign({ id }, process.env.JWT_SECRET, {
-      expiresIn: 24 * 60 * 60,
-    });
+    const token = createToken(newUser._id);
     res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
     res.status(201).json(newUser);
   } catch (error) {
@@ -41,7 +46,25 @@ const signUp = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {};
+const login = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Incorrect email' });
+    }
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: 'Incorrect password' });
+    }
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000 });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
 
 module.exports = {
   signUp,
