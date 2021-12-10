@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const countryStatsRouter = require('./routes/country');
 const summaryRouter = require('./routes/summary');
+const userRouter = require('./routes/user');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(cookieParser());
 
 //routes
+app.use(userRouter);
 app.use('/countries-stats', countryStatsRouter);
 app.use('/summary', summaryRouter);
 
