@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { AiFillEye } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
-import { signUp } from '../../actions/auth';
+import { signUp, logIn } from '../../actions/auth';
 import { useHistory } from 'react-router-dom';
 
 const Auth = ({ text }) => {
@@ -28,6 +28,16 @@ const Auth = ({ text }) => {
         )
       );
       history.push('/');
+    } else if (text === 'Sign in') {
+      dispatch(
+        logIn(
+          {
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+          },
+          history
+        )
+      );
     }
   };
 
