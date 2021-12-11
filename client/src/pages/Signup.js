@@ -1,11 +1,8 @@
 import React from 'react';
+import Auth from '../components/Auth/Auth';
 
 const Signup = () => {
-  return (
-    <div>
-      <h1>Sign up</h1>
-    </div>
-  );
+  return <Auth text="Sign up" />;
 };
 
 export default Signup;
