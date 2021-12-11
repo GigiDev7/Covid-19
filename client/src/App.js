@@ -1,8 +1,29 @@
+import { Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Statistics from './pages/Statistics';
+import CountriesData from './pages/CountriesData';
+
 function App() {
   return (
-    <div className="App">
-      <h1>hello world</h1>
-    </div>
+    <Switch>
+      <Route path="/" exact>
+        <Home />
+      </Route>
+      <Route path="/countries">
+        <CountriesData />
+      </Route>
+      <Route path="/stats">
+        <Statistics />
+      </Route>
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/signup">
+        <Signup />
+      </Route>
+    </Switch>
   );
 }
 
