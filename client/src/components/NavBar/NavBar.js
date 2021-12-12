@@ -13,12 +13,13 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch(logOut(history));
+    setOldUser();
   };
 
   // for getting user after site refresh
   useEffect(() => {
     setOldUser(JSON.parse(localStorage.getItem('user')));
-  }, [oldUser]);
+  }, []);
 
   //rendering conditionally
   const renderItems = () => {
