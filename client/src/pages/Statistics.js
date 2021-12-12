@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
-import Summary from '../components/Summary/Summary';
+import React, { useEffect, useState } from 'react';
+import SummaryCard from '../components/SummaryCard/SummaryCard';
 import { useHistory } from 'react-router-dom';
 import { getSummaryStats } from '../actions/summary';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const Statistics = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const summary = useSelector((state) => state.summary);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
-      history.push('/login');
+      history.replace('/login');
     } else {
       dispatch(getSummaryStats(user.token));
     }
   }, [history, dispatch]);
 
-  return <Summary />;
+  return <SummaryCard />;
 };
 
 export default Statistics;
