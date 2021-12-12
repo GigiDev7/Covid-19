@@ -1,19 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { AiFillEyeInvisible } from 'react-icons/ai';
 import { AiFillEye } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp, logIn } from '../../actions/auth';
 import { useHistory } from 'react-router-dom';
 
 const Auth = ({ text }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const errors = useSelector((state) => state.errors);
 
   const history = useHistory();
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  useEffect(() => {
+    dispatch({ type: 'CLEAR_ERRORS' });
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +32,6 @@ const Auth = ({ text }) => {
           history
         )
       );
-      history.push('/');
     } else if (text === 'Sign in') {
       dispatch(
         logIn(
@@ -56,12 +60,30 @@ const Auth = ({ text }) => {
             type="email"
             placeholder="Email Address *"
           />
+          {errors?.message?.startsWith('Email') && (
+            <span className={styles.email_span}>{errors.message}</span>
+          )}
+          {errors?.email && (
+            <span className={styles.email_span}>{errors.email}</span>
+          )}
+          {errors?.message?.endsWith('email') && (
+            <span className={styles.email_span}>{errors.message}</span>
+          )}
           <input
             ref={passwordRef}
             id="password"
             type={isPasswordShown ? 'text' : 'password'}
             placeholder="Password *"
           />
+          {errors?.message?.startsWith('Password') && (
+            <span className={styles.pass_span}>{errors.message}</span>
+          )}
+          {errors?.password && (
+            <span className={styles.pass_span}>{errors.password}</span>
+          )}
+          {errors?.message?.endsWith('password') && (
+            <span className={styles.pass_span}>{errors.message}</span>
+          )}
           {isPasswordShown ? (
             <AiFillEye onClick={handleShowPassword} className={styles.icon} />
           ) : (
