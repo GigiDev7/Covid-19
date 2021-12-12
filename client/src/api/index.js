@@ -17,3 +17,10 @@ export const countries_get = (token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const get_sorted_countries = (token, query, value) =>
+  axios.get(`${url}/countries-stats?${query}=${value}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });

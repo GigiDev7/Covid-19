@@ -25,3 +25,33 @@ table th {
   background-color: rgb(52 211 153);
   color: white;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search {
+  margin: 20px 0;
+}
+
+#icon_death,
+#icon_confirmed,
+#icon_recovered {
+  position: absolute;
+  top: 19%;
+  cursor: pointer;
+}
+
+#icon_death {
+  left: 53%;
+}
+
+#icon_recovered {
+  left: 75%;
+}
+
+#icon_confirmed {
+  left: 95%;
+}
