@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const protect = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
-
-  if (token) {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedData) => {
       if (err) {
         return res.status(400).json({ message: 'Invalid token' });
@@ -11,7 +10,7 @@ const protect = (req, res, next) => {
       req.userId = decodedData.id;
       next();
     });
-  } else {
+  } catch (error) {
     res.status(400).json({ message: 'Unauthorized' });
   }
 };

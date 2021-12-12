@@ -10,3 +10,10 @@ export const summary_get = (token) =>
       Authorization: `Bearer ${token}`,
     },
   });
+
+export const countries_get = (token) =>
+  axios.get(`${url}/countries-stats`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
