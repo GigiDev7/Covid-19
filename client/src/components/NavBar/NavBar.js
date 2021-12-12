@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 const NavBar = () => {
   const [oldUser, setOldUser] = useState();
-  const user = useSelector((state) => state.userData);
+  const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
   const history = useHistory();
 

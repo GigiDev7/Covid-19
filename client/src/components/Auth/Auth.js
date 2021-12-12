@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 const Auth = ({ text }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
-  const errors = useSelector((state) => state.errors);
+  const errors = useSelector((state) => state.auth.errors);
 
   const history = useHistory();
   const dispatch = useDispatch();
