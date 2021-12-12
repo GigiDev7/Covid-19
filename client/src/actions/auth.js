@@ -1,4 +1,4 @@
-import { signup_post, logout_get, login_post } from '../api/index';
+import { signup_post, login_post } from '../api/index';
 
 export const signUp = (formData, history) => async (dispatch) => {
   try {
@@ -7,16 +7,6 @@ export const signUp = (formData, history) => async (dispatch) => {
     history.push('/');
   } catch (error) {
     dispatch({ type: 'ERROR', payload: error.response.data });
-    console.log(error.response.data);
-  }
-};
-
-export const logOut = (history) => async (dispatch) => {
-  try {
-    await logout_get();
-    dispatch({ type: 'LOGOUT' });
-    history.push('/');
-  } catch (error) {
     console.log(error.response.data);
   }
 };

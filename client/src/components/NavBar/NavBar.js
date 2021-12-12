@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../../actions/auth';
 import { useHistory } from 'react-router-dom';
 
 const NavBar = () => {
@@ -12,8 +11,9 @@ const NavBar = () => {
   const history = useHistory();
 
   const handleLogout = () => {
-    dispatch(logOut(history));
+    dispatch({ type: 'LOGOUT' });
     setOldUser();
+    history.push('/');
   };
 
   // for getting user after site refresh
