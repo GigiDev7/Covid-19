@@ -40,7 +40,7 @@ table th {
 #icon_confirmed,
 #icon_recovered {
   position: absolute;
-  top: 19%;
+  top: 21%;
   cursor: pointer;
 }
 
@@ -54,4 +54,11 @@ table th {
 
 #icon_confirmed {
   left: 95%;
+}
+
+.search_input {
+  height: 40px;
+  width: 250px;
+  border-radius: 30px;
+  padding-left: 10px;
 }

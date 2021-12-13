@@ -4,6 +4,8 @@ const countryReducer = (state = { countries: [] }, action) => {
       return { ...state, countries: action.payload };
     case 'SORT_COUNTRIES':
       return { ...state, countries: action.payload };
+    case 'GET_BY_FIELD':
+      return { ...state, countries: action.payload };
     default:
       return state;
   }

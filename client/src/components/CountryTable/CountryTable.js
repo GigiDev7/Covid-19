@@ -1,18 +1,31 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
 import { COLUMNS } from './columns';
 import styles from './styles.module.css';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
-import { sortCountries } from '../../actions/countries';
+import { sortCountries, getByField } from '../../actions/countries';
 
 const CountryTable = () => {
   const [isDeathAscending, setIsDeathAscending] = useState(false);
   const [isRecoveredAscending, setIsRecoveredAscending] = useState(false);
   const [isConfirmedAscending, setIsConfirmedAscending] = useState(false);
 
+  const [searchField, setSearchField] = useState('');
+
   const countries = useSelector((state) => state.countries.countries);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const query = searchField.toLowerCase();
+    const timeout = setTimeout(() => {
+      dispatch(getByField(user.token, query));
+    }, 400);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [dispatch, searchField]);
 
   //for tables
   const columns = useMemo(() => COLUMNS, []);
@@ -56,10 +69,19 @@ const CountryTable = () => {
     }
   };
 
+  const handleSearchChange = (e) => {
+    setSearchField(e.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-        <input type="search" />
+        <input
+          placeholder="Search by field name"
+          className={styles.search_input}
+          type="search"
+          onChange={handleSearchChange}
+        />
       </div>
       <span onClick={() => handleClick('deaths')} id={styles.icon_death}>
         {!isDeathAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
