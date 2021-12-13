@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  text-align: center;
+}
+
+span {
+  display: block;
+}
+
+.link_wrapper {
+  margin-top: 150px;
+}
+
+.link_wrapper .link {
+  display: block;
+  text-decoration: none;
+  margin-top: 20px;
+  background-color: rgb(52 211 153);
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: #000;
+}
+
+.link_wrapper .link:hover {
+  background-color: rgb(47, 190, 138);
+}
