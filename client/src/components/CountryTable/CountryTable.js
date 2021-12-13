@@ -4,7 +4,7 @@ import { useTable } from 'react-table';
 import { COLUMNS } from './columns';
 import styles from './styles.module.css';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
-import { sortCountries, getByField } from '../../actions/countries';
+import { getFilteredCountries } from '../../actions/countries';
 
 const CountryTable = () => {
   const [isDeathAscending, setIsDeathAscending] = useState(false);
@@ -18,9 +18,9 @@ const CountryTable = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const query = searchField.toLowerCase();
+    const field = searchField.toLowerCase();
     const timeout = setTimeout(() => {
-      dispatch(getByField(user.token, query));
+      dispatch(getFilteredCountries(user.token, field));
     }, 400);
     return () => {
       clearTimeout(timeout);
@@ -42,28 +42,29 @@ const CountryTable = () => {
   // sorting
   const handleClick = (query, value) => {
     const user = JSON.parse(localStorage.getItem('user'));
+    const field = searchField.toLowerCase();
     if (query === 'deaths') {
       if (isDeathAscending) {
-        dispatch(sortCountries(user.token, query, 1));
+        dispatch(getFilteredCountries(user.token, field, query));
         setIsDeathAscending(!isDeathAscending);
       } else {
-        dispatch(sortCountries(user.token, query, -1));
+        dispatch(getFilteredCountries(user.token, field, `-${query}`));
         setIsDeathAscending(!isDeathAscending);
       }
     } else if (query === 'recovered') {
       if (isRecoveredAscending) {
-        dispatch(sortCountries(user.token, query, 1));
+        dispatch(getFilteredCountries(user.token, field, query));
         setIsRecoveredAscending(!isRecoveredAscending);
       } else {
-        dispatch(sortCountries(user.token, query, -1));
+        dispatch(getFilteredCountries(user.token, field, `-${query}`));
         setIsRecoveredAscending(!isRecoveredAscending);
       }
     } else if (query === 'confirmed') {
       if (isConfirmedAscending) {
-        dispatch(sortCountries(user.token, query, 1));
+        dispatch(getFilteredCountries(user.token, field, query));
         setIsConfirmedAscending(!isConfirmedAscending);
       } else {
-        dispatch(sortCountries(user.token, query, -1));
+        dispatch(getFilteredCountries(user.token, field, `-${query}`));
         setIsConfirmedAscending(!isConfirmedAscending);
       }
     }

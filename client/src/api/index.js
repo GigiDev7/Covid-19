@@ -18,15 +18,8 @@ export const countries_get = (token) =>
     },
   });
 
-export const get_sorted_countries = (token, query, value) =>
-  axios.get(`${url}/countries-stats?${query}=${value}`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-export const get_by_field = (token, query) =>
-  axios.get(`${url}/countries-stats?field=${query}`, {
+export const get_filtered_countries = (token, field, sort) =>
+  axios.get(`${url}/countries-stats?field=${field}&sort=${sort}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

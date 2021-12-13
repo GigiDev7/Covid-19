@@ -1,26 +1,21 @@
 const Statistics = require('../models/statisticsSchema');
 
-const helper = async (fieldName) => {
-  const data = await Statistics.find().populate('country_id').select(fieldName);
-  return data;
-};
-
 const filterMiddleware = async (req, res, next) => {
-  const { field } = req.query;
-  if (!field) {
+  const { field, sort } = req.query;
+
+  if (!field && !sort) {
     next();
     return;
   }
-  if (field === 'deaths') {
-    const data = await helper(field);
+  if (!field) {
+    const data = await Statistics.find().populate('country_id').sort(sort);
     return res.status(200).json(data);
   }
-  if (field === 'recovered') {
-    const data = await helper(field);
-    return res.status(200).json(data);
-  }
-  if (field === 'confirmed') {
-    const data = await helper(field);
+  if (field === 'deaths' || field === 'recovered' || field === 'confirmed') {
+    const data = await Statistics.find()
+      .populate('country_id')
+      .select(field)
+      .sort(sort);
     return res.status(200).json(data);
   }
   next();
