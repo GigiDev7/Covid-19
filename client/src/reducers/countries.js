@@ -4,6 +4,8 @@ const countryReducer = (state = { countries: [] }, action) => {
       return { ...state, countries: action.payload };
     case 'FILTER_COUNTRIES':
       return { ...state, countries: action.payload };
+    case 'CLEAR_DATA':
+      return { ...state, countries: [] };
     default:
       return state;
   }

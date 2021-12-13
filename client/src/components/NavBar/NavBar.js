@@ -12,6 +12,7 @@ const NavBar = () => {
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'CLEAR_DATA' });
     setOldUser();
     history.push('/');
   };

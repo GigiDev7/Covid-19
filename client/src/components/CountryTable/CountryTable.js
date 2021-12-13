@@ -84,15 +84,27 @@ const CountryTable = () => {
           onChange={handleSearchChange}
         />
       </div>
-      <span onClick={() => handleClick('deaths')} id={styles.icon_death}>
-        {!isDeathAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
-      </span>
-      <span onClick={() => handleClick('recovered')} id={styles.icon_recovered}>
-        {!isRecoveredAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
-      </span>
-      <span onClick={() => handleClick('confirmed')} id={styles.icon_confirmed}>
-        {!isConfirmedAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
-      </span>
+      {searchField.toLowerCase() === 'deaths' || !searchField ? (
+        <span onClick={() => handleClick('deaths')} id={styles.icon_death}>
+          {!isDeathAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
+        </span>
+      ) : null}
+      {searchField.toLowerCase() === 'recovered' || !searchField ? (
+        <span
+          onClick={() => handleClick('recovered')}
+          id={styles.icon_recovered}
+        >
+          {!isRecoveredAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
+        </span>
+      ) : null}
+      {searchField.toLowerCase() === 'confirmed' || !searchField ? (
+        <span
+          onClick={() => handleClick('confirmed')}
+          id={styles.icon_confirmed}
+        >
+          {!isConfirmedAscending ? <AiFillCaretUp /> : <AiFillCaretDown />}
+        </span>
+      ) : null}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (

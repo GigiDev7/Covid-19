@@ -30,6 +30,7 @@ table th {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .search {
@@ -40,7 +41,7 @@ table th {
 #icon_confirmed,
 #icon_recovered {
   position: absolute;
-  top: 21%;
+  top: 90px;
   cursor: pointer;
 }
 
