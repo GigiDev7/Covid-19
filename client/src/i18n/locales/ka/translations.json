@@ -11,5 +11,10 @@
   "navLogout": "გამოსვლა",
   "summaryDeaths": "გარდაცვლილი",
   "summaryRecovered": "გამოჯანმრთელებული",
-  "summaryConfirmed": "დადასტურებული"
+  "summaryConfirmed": "დადასტურებული",
+  "login": "შესვლა",
+  "signup": "რეგისტრაცია",
+  "email": "მაილი",
+  "password": "პაროლი",
+  "loginText": "ჯერ არ ხარ რეგისტრირებული?"
 }

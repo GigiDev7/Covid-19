@@ -6,6 +6,7 @@ import { AiFillEye } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp, logIn } from '../../actions/auth';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Auth = ({ text }) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
@@ -15,6 +16,8 @@ const Auth = ({ text }) => {
   const dispatch = useDispatch();
   const emailRef = useRef();
   const passwordRef = useRef();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch({ type: 'CLEAR_ERRORS' });
@@ -58,7 +61,7 @@ const Auth = ({ text }) => {
             ref={emailRef}
             id="email"
             type="email"
-            placeholder="Email Address *"
+            placeholder={`${t('email')} *`}
           />
           {errors?.message?.startsWith('Email') && (
             <span className={styles.email_span}>{errors.message}</span>
@@ -73,7 +76,7 @@ const Auth = ({ text }) => {
             ref={passwordRef}
             id="password"
             type={isPasswordShown ? 'text' : 'password'}
-            placeholder="Password *"
+            placeholder={`${t('password')} *`}
           />
           {errors?.message?.startsWith('Password') && (
             <span className={styles.pass_span}>{errors.message}</span>
@@ -94,9 +97,9 @@ const Auth = ({ text }) => {
           )}
           <button>{text}</button>
         </form>
-        {text === 'Sign in' && (
+        {text === t('login') && (
           <Link className={styles.link} to="/signup">
-            Don't have an account? Sign up
+            {t('loginText')}
           </Link>
         )}
       </div>

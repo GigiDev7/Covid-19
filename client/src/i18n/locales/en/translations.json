@@ -11,5 +11,10 @@
   "navLogout": "Logout",
   "summaryDeaths": "Deaths",
   "summaryRecovered": "Recovered",
-  "summaryConfirmed": "Confirmed"
+  "summaryConfirmed": "Confirmed",
+  "login": "Sign in",
+  "signup": "Sign up",
+  "email": "Email Address",
+  "password": "Password",
+  "loginText": "Don't have an account? Sign up"
 }
