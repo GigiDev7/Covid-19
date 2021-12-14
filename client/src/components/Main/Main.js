@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 const Main = () => {
-  const user = useSelector((state) => state.auth.userData);
-
+  const user = JSON.parse(localStorage.getItem('user'));
   return (
     <div className={styles.container}>
       <motion.h1
