@@ -16,3 +16,22 @@ export const COLUMNS = [
     accessor: 'confirmed',
   },
 ];
+
+export const COLUMNS_KA = [
+  {
+    Header: 'ქვეყანა',
+    accessor: 'country_id.name.ka',
+  },
+  {
+    Header: 'გარდაცვლილი',
+    accessor: 'deaths',
+  },
+  {
+    Header: 'გამოჯანმრთელებული',
+    accessor: 'recovered',
+  },
+  {
+    Header: 'დადასტურებული',
+    accessor: 'confirmed',
+  },
+];

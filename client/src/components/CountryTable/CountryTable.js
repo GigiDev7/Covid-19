@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTable } from 'react-table';
-import { COLUMNS } from './columns';
+import { COLUMNS, COLUMNS_KA } from './columns';
 import styles from './styles.module.css';
 import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
 import { getFilteredCountries } from '../../actions/countries';
@@ -12,6 +12,9 @@ const CountryTable = () => {
   const [isConfirmedAscending, setIsConfirmedAscending] = useState(false);
 
   const [searchField, setSearchField] = useState('');
+
+  const [columnsLanguage, setColumnsLanguage] = useState(COLUMNS);
+  const language = useSelector((state) => state.language.lang);
 
   const countries = useSelector((state) => state.countries.countries);
   const dispatch = useDispatch();
@@ -27,8 +30,25 @@ const CountryTable = () => {
     };
   }, [dispatch, searchField]);
 
+  useEffect(() => {
+    if (language === 'ka') {
+      setColumnsLanguage(COLUMNS_KA);
+    } else {
+      setColumnsLanguage(COLUMNS);
+    }
+  }, [language]);
+
+  useEffect(() => {
+    const lang = JSON.parse(localStorage.getItem('lang'));
+    if (lang === 'ka') {
+      setColumnsLanguage(COLUMNS_KA);
+    } else {
+      setColumnsLanguage(COLUMNS);
+    }
+  }, []);
+
   //for tables
-  const columns = useMemo(() => COLUMNS, []);
+  const columns = useMemo(() => columnsLanguage, [columnsLanguage]);
   const data = useMemo(() => countries, [countries]);
 
   const tableInstance = useTable({
@@ -40,7 +60,7 @@ const CountryTable = () => {
     tableInstance;
 
   // sorting
-  const handleClick = (query, value) => {
+  const handleClick = (query) => {
     const user = JSON.parse(localStorage.getItem('user'));
     const field = searchField.toLowerCase();
     if (query === 'deaths') {

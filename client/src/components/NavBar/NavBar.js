@@ -21,6 +21,7 @@ const NavBar = () => {
   }, []);
 
   const handleLanguageChange = (e) => {
+    dispatch({ type: 'CHANGE_LANGUAGE', payload: e.target.value });
     i18n.changeLanguage(e.target.value);
     setLanguageValue(e.target.value);
     localStorage.setItem('lang', JSON.stringify(e.target.value));

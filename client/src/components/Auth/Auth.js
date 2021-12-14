@@ -25,7 +25,7 @@ const Auth = ({ text }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text === 'Sign up') {
+    if (text === t('signup')) {
       dispatch(
         signUp(
           {
@@ -35,7 +35,7 @@ const Auth = ({ text }) => {
           history
         )
       );
-    } else if (text === 'Sign in') {
+    } else if (text === t('login')) {
       dispatch(
         logIn(
           {
