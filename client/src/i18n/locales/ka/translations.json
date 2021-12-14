@@ -8,5 +8,8 @@
   "navSummary": "მსოფლიო სტატისტიკა",
   "navLogin": "შესვლა",
   "navSignup": "რეგისტრაცია",
-  "navLogout": "გამოსვლა"
+  "navLogout": "გამოსვლა",
+  "summaryDeaths": "გარდაცვლილი",
+  "summaryRecovered": "გამოჯანმრთელებული",
+  "summaryConfirmed": "დადასტურებული"
 }

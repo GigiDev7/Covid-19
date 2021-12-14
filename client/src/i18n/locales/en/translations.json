@@ -8,5 +8,8 @@
   "navSummary": "Summary",
   "navLogin": "Login",
   "navSignup": "Sign up",
-  "navLogout": "Logout"
+  "navLogout": "Logout",
+  "summaryDeaths": "Deaths",
+  "summaryRecovered": "Recovered",
+  "summaryConfirmed": "Confirmed"
 }
