@@ -30,3 +30,8 @@ nav {
   margin-left: 20px;
   cursor: pointer;
 }
+
+select {
+  padding: 3px;
+  outline: none;
+}

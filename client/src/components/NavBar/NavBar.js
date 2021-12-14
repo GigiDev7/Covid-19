@@ -11,11 +11,19 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [languageValue, setLanguageValue] = useState();
+
   const { i18n } = useTranslation();
   const { t } = useTranslation();
 
+  useEffect(() => {
+    setLanguageValue(JSON.parse(localStorage.getItem('lang')));
+  }, []);
+
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
+    setLanguageValue(e.target.value);
+    localStorage.setItem('lang', JSON.stringify(e.target.value));
   };
 
   const handleLogout = () => {
@@ -63,7 +71,7 @@ const NavBar = () => {
   return (
     <nav>
       <div className={styles.wrapper}>
-        <select onChange={handleLanguageChange}>
+        <select value={languageValue} onChange={handleLanguageChange}>
           <option value="en">eng</option>
           <option value="ka">ქა</option>
         </select>
