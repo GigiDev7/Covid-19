@@ -3,12 +3,20 @@ import { Link } from 'react-router-dom';
 import styles from './styles.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const NavBar = () => {
   const [oldUser, setOldUser] = useState();
   const user = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  const handleLanguageChange = (e) => {
+    i18n.changeLanguage(e.target.value);
+  };
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
@@ -29,7 +37,7 @@ const NavBar = () => {
         <div className={styles.userDiv}>
           <p className={styles.userEmail}>{user.email}</p>
           <button onClick={handleLogout} className={styles.logoutBtn}>
-            Logout
+            {t('navLogout')}
           </button>
         </div>
       );
@@ -38,15 +46,15 @@ const NavBar = () => {
         <div className={styles.userDiv}>
           <p className={styles.userEmail}>{oldUser?.email}</p>
           <button onClick={handleLogout} className={styles.logoutBtn}>
-            Logout
+            {t('navLogout')}
           </button>
         </div>
       );
     } else {
       return (
         <>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign up</Link>
+          <Link to="/login">{t('navLogin')}</Link>
+          <Link to="/signup">{t('navSignup')}</Link>
         </>
       );
     }
@@ -55,11 +63,15 @@ const NavBar = () => {
   return (
     <nav>
       <div className={styles.wrapper}>
-        <Link to="/">Covid 19</Link>
+        <select onChange={handleLanguageChange}>
+          <option value="en">eng</option>
+          <option value="ka">ქა</option>
+        </select>
+        <Link to="/">{t('covid')}</Link>
       </div>
       <div className={styles.wrapper}>
-        <Link to="/countries">Countries Data</Link>
-        <Link to="/stats">Summary</Link>
+        <Link to="/countries">{t('navCountries')}</Link>
+        <Link to="/stats">{t('navSummary')}</Link>
       </div>
       <div className={styles.wrapper}>{renderItems()}</div>
     </nav>

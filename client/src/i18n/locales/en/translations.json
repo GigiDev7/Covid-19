@@ -1,0 +1,12 @@
+{
+  "mainText": "See Latest Covid 19 Statistics.",
+  "mainSpan": "Get stats for each country and for whole world.",
+  "mainBtn1": "Get Started by Logging in",
+  "mainBtn2": "Already Logged in? See Stats",
+  "covid": "Covid 19",
+  "navCountries": "Countries Data",
+  "navSummary": "Summary",
+  "navLogin": "Login",
+  "navSignup": "Sign up",
+  "navLogout": "Logout"
+}

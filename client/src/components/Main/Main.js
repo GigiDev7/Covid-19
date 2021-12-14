@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const Main = () => {
   const user = JSON.parse(localStorage.getItem('user'));
+
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <motion.h1
@@ -13,8 +16,9 @@ const Main = () => {
         transition={{ duration: 1 }}
         animate={{ y: [-200, 0], opacity: 1 }}
       >
-        See Latest Covid 19 Statistics.
-        <span>Get stats for each country and for whole world.</span>
+        {/* See Latest Covid 19 Statistics. */}
+        {t('mainText')}
+        <span>{t('mainSpan')}</span>
       </motion.h1>
       <motion.div
         initial={{ opacity: 0 }}
@@ -23,10 +27,10 @@ const Main = () => {
         className={styles.link_wrapper}
       >
         <Link className={styles.link} to={user ? '#' : '/login'}>
-          Get Started by Logging in
+          {t('mainBtn1')}
         </Link>
         <Link className={styles.link} to={user ? '/countries' : '#'}>
-          Already Logged in? See Stats
+          {t('mainBtn2')}
         </Link>
       </motion.div>
     </div>
