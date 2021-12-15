@@ -35,3 +35,14 @@ select {
   padding: 3px;
   outline: none;
 }
+
+@media only screen and (max-width: 768px) {
+  .wrapper a {
+    font-size: 0.9rem;
+  }
+
+  .userDiv button,
+  .userDiv a {
+    font-size: 0.9rem;
+  }
+}

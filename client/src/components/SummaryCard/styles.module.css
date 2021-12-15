@@ -23,3 +23,9 @@
   color: aliceblue;
   font-weight: 700;
 }
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}

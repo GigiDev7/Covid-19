@@ -54,7 +54,7 @@ table th {
 }
 
 #icon_confirmed {
-  left: 95%;
+  left: 91%;
 }
 
 .search_input {
@@ -62,4 +62,18 @@ table th {
   width: 250px;
   border-radius: 30px;
   padding-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  #icon_death {
+    left: 53%;
+  }
+
+  #icon_recovered {
+    left: 73%;
+  }
+
+  #icon_confirmed {
+    left: 94%;
+  }
 }

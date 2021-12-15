@@ -98,7 +98,7 @@ const CountryTable = () => {
     <div className={styles.container}>
       <div className={styles.search}>
         <input
-          placeholder="Search by field name"
+          placeholder="Search by field name. e.g deaths"
           className={styles.search_input}
           type="search"
           onChange={handleSearchChange}
