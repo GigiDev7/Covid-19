@@ -3,12 +3,6 @@ const Statistics = require('../models/statisticsSchema');
 const filterMiddleware = async (req, res, next) => {
   const { field, sort } = req.query;
 
-  /* if (field) {
-    if (field.split(' ').includes('death')) field = 'deaths';
-    if (field.split(' ').includes('recover')) field = 'recovered';
-    if (field.split(' ').includes('confirm')) field = 'confirmed';
-  } */
-
   if (!field && !sort) {
     next();
     return;
